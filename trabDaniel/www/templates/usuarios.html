@@ -1,0 +1,100 @@
+<ion-view view-title="Usuários" ng-controller = "UserCtrl">
+	<ion-nav-buttons side="right">
+      <button class="button" ng-click = "saveShowUser()">
+       <i class="ion-plus-round"></i>
+      </button>
+    </ion-nav-buttons>
+
+	<ion-content>
+
+		<ion-list>
+		   <ion-item class="item-divider">Administradores</ion-item>
+		   <ion-item ng-repeat="admin in users.admin" >
+				 {{ admin.name }}
+				 <ion-option-button class="button-positive" ng-click="editShowUser(admin)">
+					 <i class="ion-edit"></i>
+				 </ion-option-button>
+				 <ion-option-button class="button-assertive" ng-click="deleteUser(admin)">
+					 <i class="ion-trash-a"></i>
+				 </ion-option-button>
+
+			 </ion-item>
+
+
+		   <ion-item class="item-divider">Presidente da CIPA</ion-item>
+		   <ion-item ng-repeat="pres in users.pres">{{ pres.name }}
+				 <ion-option-button class="button-positive" ng-click="editShowUser(pres)">
+					 <i class="ion-edit"></i>
+				 </ion-option-button>
+				 <ion-option-button class="button-assertive" ng-click="deleteUser(pres)">
+					 <i class="ion-trash-a"></i>
+				 </ion-option-button>
+			 </ion-item>
+
+		    <ion-item class="item-divider">Cipeiros</ion-item>
+			<ion-item ng-repeat="cip in users.cip">{{ cip.name }}
+				<ion-option-button class="button-positive" ng-click="editShowUser(cip)">
+					<i class="ion-edit"></i>
+				</ion-option-button>
+				<ion-option-button class="button-assertive" ng-click="deleteUser(cip)">
+					<i class="ion-trash-a"></i>
+				</ion-option-button>
+			</ion-item>
+		</ion-list>
+
+	</ion-content>
+
+	<script id="form_add_user.html" type="text/ng-template">
+	  <ion-modal-view>
+	    <ion-header-bar>
+	      <h1 class="title">Novo Usuário</h1>
+	      <button class="button" ng-click = "closeModal()">
+	       <i class="ion-close-round"></i>
+	      </button>
+	    </ion-header-bar>
+	    <ion-content>
+
+	    	<img class = "img_new_user" src="img/new_user_2.png">
+
+				<form>
+        	<div class="list">
+			 			<label class="item item-input">
+		           <span class="ion-person input-label"> Cód</span>
+		           <input type="number" ng-model = "user.code">
+	          </label>
+
+          	<label class="item item-input">
+            	<span class="ion-person input-label"> Usuário</span>
+            	<input type="text" ng-model = "user.name">
+          	</label>
+
+          	<label class="item item-input">
+            	<span class="ion-key input-label"> Senha</span>
+           		<input type="password" ng-model = "user.password">
+          	</label>
+
+		  	  	<label class="item item-input">
+	            	<span class="ion-email input-label"> Email</span>
+	            	<input type="email" ng-model = "user.email">
+          	 </label>
+
+		  	  	<label class="item item-input item-select">
+            		<span class="ion-person input-label"> Tipo:</span>
+
+							 	<select ng-options="option.name for option in typeUser track by option.code"
+							 			ng-model = "user.type">
+									<option value="">Selecione</option>
+								</select>
+		      	</label>
+
+		      	<button class="button button-block button-balanced" ng-click="switchUser(user)">
+		      		Salvar
+		      	</button>
+        	</div>
+				</form>
+
+	    </ion-content>
+	  </ion-modal-view>
+	</script>
+
+</ion-view>
